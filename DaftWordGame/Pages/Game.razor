@@ -17,7 +17,7 @@
 
                     @if (@GuessCorrect(index))
                     {
-                        <input tabindex="@GetAndIncrementTabOrder()" class="letter-box @LetterStyle(index)" placeholder="@GetPlaceHolder(c)" 
+                        <input class="letter-box @LetterStyle(index)" placeholder="@GetPlaceHolder(c)" 
                             @bind="@guesses[index]" readonly/>    
                     }
                     else
