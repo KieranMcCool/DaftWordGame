@@ -5,11 +5,10 @@
 
 @if(gameState != null)
 {
+    <button @onclick="@NewGame">New Game!</button>
     <div>
         @foreach (var word in gameState?.Words)
         {
-            
-            <p>@word</p>
             <div class="display-flex">
             @foreach (var c in word)
             {
