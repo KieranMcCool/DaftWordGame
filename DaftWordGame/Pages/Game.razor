@@ -9,22 +9,29 @@
     <div>
         @foreach (var word in gameState?.Words)
         {
-            <div class="display-flex">
-            @foreach (var c in word)
-            {
-                var index = IndexFromChar(c);
+            <div class="display-flex word-container">
+               
+                @foreach (var c in word.Text)
+                {
+                    var index = IndexFromChar(c);
 
-                @if (@GuessCorrect(index))
-                {
-                    <input class="letter-box @LetterStyle(index)" placeholder="@GetPlaceHolder(c)" 
-                        @bind="@guesses[index]" readonly/>    
+                    @if (@GuessCorrect(index))
+                    {
+                        <input tabindex="@GetAndIncrementTabOrder()" class="letter-box @LetterStyle(index)" placeholder="@GetPlaceHolder(c)" 
+                            @bind="@guesses[index]" readonly/>    
+                    }
+                    else
+                    {
+                        <input class="letter-box @LetterStyle(index)" tabindex="@GetAndIncrementTabOrder()" placeholder="@GetPlaceHolder(c)" 
+                            @bind="@guesses[index]" oninput="this.value=this.value.toUpperCase()"/> 
+                    }  
                 }
-                else
+
+                <h3>Definitions</h3>
+                @foreach (var def in word.Definitions)
                 {
-                    <input class="letter-box @LetterStyle(index)" placeholder="@GetPlaceHolder(c)" 
-                        @bind="@guesses[index]"/> 
-                }  
-            }
+                    <p>@def</p>    
+                }
             </div>
         }
     </div>

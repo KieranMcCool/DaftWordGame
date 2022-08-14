@@ -52,6 +52,17 @@ namespace DaftWordGame.Pages
                 gameState.CharMappings[c].number.ToString();
         }
 
+        private int TabOrder { get; set; } = 1;
+
+        private int GetAndIncrementTabOrder()
+        {
+            var tabOrder = TabOrder;
+
+            TabOrder++;
+
+            return tabOrder;
+        }
+
         protected override async Task OnInitializedAsync() => await NewGame();
     }
 }

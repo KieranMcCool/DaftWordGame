@@ -2,6 +2,8 @@
     width: 2em;
     font-size: 16pt;
     text-align: center;
+    margin-bottom: 1em;
+    text-transform: uppercase;
 }
 
 .letter-box-incorrect {
@@ -10,4 +12,9 @@
 
 .letter-box-correct {
     background-color: green;
+}
+
+.word-container {
+    border: dashed 1px black;
+    padding: 1em;
 }
