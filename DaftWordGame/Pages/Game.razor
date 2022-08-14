@@ -1,7 +1,38 @@
-﻿@inject GameStateService
+﻿@page "/"
+@using DaftWordGame.Services
+@using DaftWordGame.Models
+@inject WordGameService wordGameService
 
-<h3>Game</h3>
+@if(gameState != null)
+{
+    <div>
+        @foreach (var word in gameState?.Words)
+        {
+            <div class="display-flex">
+            @foreach (var c in word)
+            {
+                <input class="letter-box" placeholder="@GetPlaceHolder(c)"/>        
+            }
+            </div>
+        }
+    </div>
+}
+
 
 @code {
+    GameState? gameState;
 
+    private async Task NewGame()
+    {
+        gameState = await wordGameService.GetNewGame();
+    }
+
+    private string GetPlaceHolder(char c)
+    {
+        return gameState.CharMappings[c].revealed ?
+            c.ToString() :
+            gameState.CharMappings[c].number.ToString();
+    }
+
+    protected override async Task OnInitializedAsync() => await NewGame();
 }

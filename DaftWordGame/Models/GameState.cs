@@ -24,7 +24,7 @@ namespace DaftWordGame.Models
                 stringBuilder.Append(word);
 
             var allCharacters = stringBuilder.ToString()
-                .ToLower().Distinct().ToList();
+                .Distinct().ToList();
 
             allCharacters.Shuffle();
 
