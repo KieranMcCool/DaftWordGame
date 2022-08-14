@@ -8,31 +8,25 @@
     <div>
         @foreach (var word in gameState?.Words)
         {
+            
+            <p>@word</p>
             <div class="display-flex">
             @foreach (var c in word)
             {
-                <input class="letter-box" placeholder="@GetPlaceHolder(c)"/>        
+                var index = IndexFromChar(c);
+
+                @if (@GuessCorrect(index))
+                {
+                    <input class="letter-box @LetterStyle(index)" placeholder="@GetPlaceHolder(c)" 
+                        @bind="@guesses[index]" readonly/>    
+                }
+                else
+                {
+                    <input class="letter-box @LetterStyle(index)" placeholder="@GetPlaceHolder(c)" 
+                        @bind="@guesses[index]"/> 
+                }  
             }
             </div>
         }
     </div>
-}
-
-
-@code {
-    GameState? gameState;
-
-    private async Task NewGame()
-    {
-        gameState = await wordGameService.GetNewGame();
-    }
-
-    private string GetPlaceHolder(char c)
-    {
-        return gameState.CharMappings[c].revealed ?
-            c.ToString() :
-            gameState.CharMappings[c].number.ToString();
-    }
-
-    protected override async Task OnInitializedAsync() => await NewGame();
 }

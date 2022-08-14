@@ -3,3 +3,11 @@
     font-size: 16pt;
     text-align: center;
 }
+
+.letter-box-incorrect {
+    background-color: red;
+}
+
+.letter-box-correct {
+    background-color: green;
+}
